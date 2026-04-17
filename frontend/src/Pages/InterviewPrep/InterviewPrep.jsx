@@ -248,7 +248,7 @@ function InterviewPrep() {
           role: sessionData?.role,
           experience: sessionData?.experience,
           topicsToFocus: sessionData?.topicsToFocus,
-          numberOfQuestions: 10,
+          numberOfQuestions: 5,
         }
       );
       const generatedQuestions = aiResponse.data;

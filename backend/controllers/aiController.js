@@ -40,8 +40,8 @@ function parseStrictJSON(text) {
       firstObject === -1
         ? firstArray
         : firstArray === -1
-        ? firstObject
-        : Math.min(firstObject, firstArray);
+          ? firstObject
+          : Math.min(firstObject, firstArray);
 
     // Locate JSON end
     const lastObject = cleaned.lastIndexOf("}");
@@ -80,7 +80,7 @@ const generateInterviewQuestions = async (req, res) => {
       role,
       experience,
       topicsToFocus,
-      numberOfQuestions
+      numberOfQuestions,
     );
 
     const response = await axios.post(
@@ -104,7 +104,7 @@ const generateInterviewQuestions = async (req, res) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${process.env.DEEPSEEK_API_KEY}`,
         },
-      }
+      },
     );
 
     const rawText = response?.data?.choices?.[0]?.message?.content;
@@ -113,10 +113,7 @@ const generateInterviewQuestions = async (req, res) => {
 
     return res.status(200).json(data);
   } catch (error) {
-    console.error(
-      "DeepSeek generateInterviewQuestions error:",
-      error.message
-    );
+    console.error("DeepSeek generateInterviewQuestions error:", error.message);
     return res.status(500).json({
       message: "Failed to generate interview questions",
       error: error.message,
@@ -158,7 +155,7 @@ const generateConceptExplanation = async (req, res) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${process.env.DEEPSEEK_API_KEY}`,
         },
-      }
+      },
     );
 
     const rawText = response?.data?.choices?.[0]?.message?.content;
@@ -167,10 +164,7 @@ const generateConceptExplanation = async (req, res) => {
 
     return res.status(200).json(data);
   } catch (error) {
-    console.error(
-      "DeepSeek generateConceptExplanation error:",
-      error.message
-    );
+    console.error("DeepSeek generateConceptExplanation error:", error.message);
     return res.status(500).json({
       message: "Failed to generate explanation",
       error: error.message,
